@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>다시 만나요, 배민클럽 | 복귀 고객 전용 혜택</title>
+<meta name="description" content="3개월간 쉬었던 당신을 위한 배민클럽 복귀 전용 혜택. 음식값 할인 + 배달비 무료 + 전용 할인코드.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --mint: #2AC1BC;
+    --mint-dark: #049D95;
+    --mint-light: #E9FAF8;
+    --navy: #1F2937;
+    --gray: #6B7280;
+    --yellow: #FFC400;
+    --coral: #FF5A5F;
+    --bg-alt: #F5FBFA;
+    --radius: 18px;
+    --max-w: 480px;
+  }
+  /* 태블릿 / 폴더블 언폴드 (601~1023px) */
+  @media (min-width:601px) and (max-width:1023px){
+    :root{ --max-w: 760px; }
+  }
+  /* 데스크탑 (1024px~) */
+  @media (min-width:1024px){
+    :root{ --max-w: 1160px; }
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    font-family:'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    color:var(--navy);
+    background:#fff;
+    -webkit-font-smoothing:antialiased;
+    word-break:keep-all;
+  }
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;color:inherit;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+
+  .page{
+    max-width:var(--max-w);
+    margin:0 auto;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 0 40px rgba(0,0,0,0.06);
+  }
+
+  /* ===== Sticky header ===== */
+  .header{
+    position:sticky;top:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid #eee;
+  }
+  .logo{display:flex;align-items:center;gap:6px;font-weight:900;font-size:17px;color:var(--mint-dark);}
+  .logo .dot{width:8px;height:8px;background:var(--coral);border-radius:50%;display:inline-block;}
+  .header-cta{
+    background:var(--navy);color:#fff;font-size:13px;font-weight:700;
+    padding:8px 14px;border-radius:999px;
+  }
+  @media (min-width:1024px){
+    .header{padding:18px 48px;}
+  }
+
+  /* ===== Responsive content containers ===== */
+  .hero-inner, .final-inner{ max-width:480px; margin:0 auto; }
+  .section-inner{ max-width:100%; }
+  @media (min-width:601px){
+    .hero-inner{ max-width:620px; }
+    .section-inner{ max-width:640px; margin:0 auto; }
+    .section-inner.wide{ max-width:920px; }
+  }
+  @media (min-width:1024px){
+    .hero-inner{ max-width:680px; }
+    .section-inner{ max-width:700px; }
+    .section-inner.wide{ max-width:1120px; }
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    padding:36px 20px 40px;
+    background:linear-gradient(160deg, var(--mint-light) 0%, #ffffff 65%);
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;top:-60px;right:-60px;width:220px;height:220px;
+    background:var(--mint);opacity:0.18;border-radius:50%;
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:6px;
+    background:#fff;border:1.5px solid var(--mint);color:var(--mint-dark);
+    font-size:12.5px;font-weight:700;padding:6px 14px;border-radius:999px;
+    margin-bottom:16px;
+  }
+  .hero h1{
+    font-size:26px;line-height:1.4;font-weight:900;color:var(--navy);
+    margin-bottom:12px;
+    position:relative;z-index:1;
+  }
+  .hero h1 span{color:var(--mint-dark);}
+  .hero p.sub{
+    font-size:15px;color:var(--gray);line-height:1.6;margin-bottom:26px;
+    position:relative;z-index:1;
+  }
+  .hero-visual{
+    display:flex;justify-content:center;gap:16px;margin:8px 0 26px;
+    position:relative;z-index:1;
+  }
+  .hero-visual .hvi{
+    width:72px;height:72px;border-radius:50%;
+    background:var(--mint-light);border:1px solid #DCEFEC;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 16px rgba(4,157,149,0.1);
+  }
+  .hero-visual .hvi svg{width:38px;height:38px;}
+  @media (min-width:601px){
+    .hero h1{font-size:32px;}
+    .hero p.sub{font-size:16.5px;}
+    .hero-visual .hvi{width:84px;height:84px;}
+    .hero-visual .hvi svg{width:44px;height:44px;}
+  }
+  @media (min-width:1024px){
+    .hero{padding:64px 48px 72px;}
+    .hero h1{font-size:38px;}
+    .hero p.sub{font-size:17.5px;}
+    .hero-visual .hvi{width:96px;height:96px;}
+    .hero-visual .hvi svg{width:50px;height:50px;}
+  }
+
+  .btn-primary{
+    display:block;width:100%;
+    background:linear-gradient(135deg, var(--mint) 0%, var(--mint-dark) 100%);
+    color:#fff;font-size:16.5px;font-weight:900;
+    padding:17px;border-radius:14px;
+    box-shadow:0 10px 24px rgba(4,157,149,0.35);
+    position:relative;z-index:1;
+    transition:transform .15s ease;
+  }
+  .btn-primary:active{transform:scale(0.97);}
+  .btn-sub-note{
+    font-size:12px;color:var(--gray);margin-top:10px;position:relative;z-index:1;
+  }
+
+  /* ===== Section generic ===== */
+  .section{padding:44px 20px;}
+  .section.alt{background:var(--bg-alt);}
+  .section-tag{
+    font-size:12.5px;font-weight:700;color:var(--mint-dark);
+    background:var(--mint-light);display:inline-block;
+    padding:5px 12px;border-radius:999px;margin-bottom:12px;
+  }
+  .section h2{
+    font-size:21px;font-weight:900;line-height:1.4;margin-bottom:8px;
+  }
+  .section p.desc{
+    font-size:14px;color:var(--gray);line-height:1.6;margin-bottom:24px;
+  }
+
+  /* ===== Promo code box ===== */
+  .code-box{
+    background:var(--navy);
+    border-radius:var(--radius);
+    padding:26px 22px;
+    text-align:center;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .code-box::after{
+    content:"🎬";position:absolute;right:-10px;bottom:-18px;font-size:90px;opacity:0.12;
+  }
+  .code-box .label{font-size:12.5px;color:#B9F2EE;font-weight:700;margin-bottom:10px;letter-spacing:0.3px;}
+  .code-pill{
+    display:flex;align-items:center;justify-content:space-between;
+    background:rgba(255,255,255,0.08);
+    border:1.5px dashed var(--mint);
+    border-radius:12px;
+    padding:14px 16px;
+    margin:0 auto 14px;
+  }
+  .code-pill .code{font-size:20px;font-weight:900;letter-spacing:2px;color:#fff;}
+  .copy-btn{
+    background:var(--mint);color:var(--navy);font-size:12.5px;font-weight:800;
+    padding:8px 12px;border-radius:8px;white-space:nowrap;
+  }
+  .copy-btn.copied{background:var(--yellow);}
+  .code-box .hint{font-size:12.5px;color:#D1D5DB;line-height:1.6;}
+
+  /* ===== Benefit cards ===== */
+  .benefit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
+  .benefit-card{
+    display:flex;gap:14px;align-items:flex-start;
+    background:#fff;border:1px solid #EEF2F1;border-radius:var(--radius);
+    padding:18px;box-shadow:0 4px 16px rgba(0,0,0,0.03);
+  }
+  .benefit-card .icon{
+    width:46px;height:46px;flex:0 0 46px;border-radius:12px;
+    background:var(--mint-light);display:flex;align-items:center;justify-content:center;
+  }
+  .benefit-card .icon svg{width:24px;height:24px;}
+  .benefit-card h3{font-size:15.5px;font-weight:800;margin-bottom:4px;}
+  .benefit-card p{font-size:13.5px;color:var(--gray);line-height:1.55;}
+  .benefit-card .tagnum{
+    font-size:20px;font-weight:900;color:var(--mint-dark);margin-right:4px;
+  }
+
+  /* ===== Membership perks list ===== */
+  .perk-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;}
+  .perk-item{
+    background:#fff;border-radius:14px;border:1px solid #EEF2F1;
+    padding:16px 12px;text-align:center;
+  }
+  .perk-item .emoji{display:flex;justify-content:center;margin-bottom:8px;}
+  .perk-item .emoji svg{width:26px;height:26px;}
+  .perk-item .t{font-size:13px;font-weight:800;margin-bottom:3px;}
+  .perk-item .d{font-size:11.5px;color:var(--gray);line-height:1.4;}
+
+  /* ===== Steps ===== */
+  .steps{display:flex;flex-direction:column;gap:0;}
+  .step{display:flex;gap:16px;position:relative;padding-bottom:28px;}
+  .step:last-child{padding-bottom:0;}
+  .step::before{
+    content:"";position:absolute;left:19px;top:40px;bottom:0;width:2px;
+    background:#E1F4F2;
+  }
+  .step:last-child::before{display:none;}
+  .step .num{
+    flex:0 0 40px;width:40px;height:40px;border-radius:50%;
+    background:var(--mint);color:#fff;font-weight:900;font-size:16px;
+    display:flex;align-items:center;justify-content:center;z-index:1;
+  }
+  .step .content h3{font-size:15px;font-weight:800;margin-bottom:4px;}
+  .step .content p{font-size:13.5px;color:var(--gray);line-height:1.55;}
+
+  /* ===== Social proof ===== */
+  .stat-row{display:flex;justify-content:space-between;text-align:center;margin-bottom:26px;}
+  .stat-row .stat b{display:block;font-size:22px;font-weight:900;color:var(--mint-dark);}
+  .stat-row .stat span{font-size:11.5px;color:var(--gray);}
+  .review{
+    background:#fff;border:1px solid #EEF2F1;border-radius:14px;
+    padding:16px;margin-bottom:10px;
+  }
+  .review .stars{color:var(--yellow);font-size:13px;margin-bottom:6px;}
+  .review p{font-size:13.5px;line-height:1.55;color:var(--navy);margin-bottom:6px;}
+  .review .who{font-size:12px;color:var(--gray);}
+
+  /* ===== Urgency / countdown ===== */
+  .urgency{
+    background:linear-gradient(135deg, #FFF4E0 0%, #FFEDEE 100%);
+    border-radius:var(--radius);
+    padding:22px;text-align:center;
+    border:1px solid #FFE1C7;
+  }
+  .urgency .lead{font-size:13.5px;font-weight:700;color:var(--coral);margin-bottom:10px;}
+  .countdown{display:flex;justify-content:center;gap:10px;margin-bottom:12px;}
+  .countdown .box{
+    background:var(--navy);color:#fff;border-radius:10px;
+    padding:10px 0;width:58px;
+  }
+  .countdown .box b{display:block;font-size:20px;font-weight:900;}
+  .countdown .box span{font-size:10px;color:#9CA3AF;}
+  .urgency .note{font-size:12px;color:var(--gray);}
+
+  /* ===== FAQ ===== */
+  .faq-item{border-bottom:1px solid #EEF2F1;}
+  .faq-q{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 2px;font-size:14.5px;font-weight:700;
+  }
+  .faq-q .arrow{transition:transform .2s ease;color:var(--mint-dark);font-size:14px;}
+  .faq-item.open .faq-q .arrow{transform:rotate(180deg);}
+  .faq-a{
+    font-size:13.5px;color:var(--gray);line-height:1.6;
+    max-height:0;overflow:hidden;transition:max-height .25s ease;
+  }
+  .faq-a-inner{padding:0 2px 16px;}
+  .faq-item.open .faq-a{max-height:220px;}
+
+  /* ===== Final CTA ===== */
+  .final-cta{
+    background:linear-gradient(160deg, var(--navy) 0%, #0F2E2C 100%);
+    color:#fff;text-align:center;padding:48px 20px;
+  }
+  .final-cta h2{font-size:22px;font-weight:900;margin-bottom:10px;line-height:1.4;}
+  .final-cta p{font-size:14px;color:#C9D3D1;margin-bottom:26px;line-height:1.6;}
+  .store-buttons{display:flex;flex-direction:column;gap:10px;margin-bottom:18px;}
+  .store-btn{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    background:#fff;color:var(--navy);font-weight:800;font-size:15px;
+    padding:15px;border-radius:12px;
+  }
+  .store-btn.android{background:transparent;border:1.5px solid rgba(255,255,255,0.4);color:#fff;}
+  .final-cta .mini-code{
+    font-size:12.5px;color:#9CA3AF;
+  }
+  .final-cta .mini-code b{color:var(--mint);}
+  .recap-row{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:22px;
+  }
+  .recap-item{
+    display:flex;align-items:center;gap:6px;
+    background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);
+    border-radius:999px;padding:7px 13px;font-size:12.5px;font-weight:700;color:#E9FAF8;
+  }
+  .recap-ic{font-size:13px;}
+
+  /* ===== Hero benefit recap chips ===== */
+  .hero-recap{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
+    margin:0 0 22px;position:relative;z-index:1;
+  }
+  .hero-recap span{
+    display:flex;align-items:center;gap:5px;
+    background:#fff;border:1px solid #DCEFEC;border-radius:999px;
+    padding:6px 12px;font-size:12px;font-weight:700;color:var(--navy);
+    box-shadow:0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  /* ===== Footer ===== */
+  .footer{
+    padding:28px 20px 40px;font-size:11px;color:#9CA3AF;line-height:1.7;
+    background:#111827;
+  }
+  .footer .flinks{display:flex;gap:14px;margin-bottom:12px;font-size:12px;color:#D1D5DB;font-weight:700;}
+
+  /* ===== Sticky mobile/desktop CTA bar ===== */
+  .sticky-cta{
+    position:fixed;left:0;right:0;bottom:0;
+    max-width:var(--max-w);margin:0 auto;
+    background:#fff;border-top:1px solid #eee;
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    box-shadow:0 -8px 24px rgba(0,0,0,0.1);
+    transform:translateY(120%);transition:transform .3s ease;
+    z-index:200;
+  }
+  .sticky-cta.show{transform:translateY(0);}
+  .sticky-cta-text{font-size:12.5px;color:var(--navy);line-height:1.4;}
+  .sticky-cta-text strong{color:var(--mint-dark);}
+  .sticky-cta-btn{
+    background:linear-gradient(135deg, var(--mint) 0%, var(--mint-dark) 100%);
+    color:#fff;font-weight:800;font-size:13.5px;
+    padding:11px 18px;border-radius:10px;white-space:nowrap;flex:0 0 auto;
+  }
+
+  /* ===== Reveal animation ===== */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease, transform .5s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  @media (min-width:481px){
+    .page{box-shadow:0 0 60px rgba(0,0,0,0.12);}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== Header ===== -->
+  <header class="header">
+    <div class="logo"><span class="dot"></span>배민클럽</div>
+    <a href="#download" class="header-cta">앱으로 받기</a>
+  </header>
+
+  <!-- ===== 1. Hero ===== -->
+  <section class="hero">
+   <div class="hero-inner">
+    <span class="badge">🎉 복귀 고객 전용 혜택</span>
+    <h1>오랜만이에요,<br><span>혼자 먹는 밥도 든든하게</span><br>배민클럽이 다시 모셔요</h1>
+    <p class="sub">3개월간 쉬셨던 분들을 위해 준비했어요.<br>이번엔 음식값 할인 + 배달비 0원으로 다시 인사드려요.</p>
+    <div class="hero-visual">
+      <span class="hvi" aria-label="음식">
+        <svg viewBox="0 0 48 48"><path d="M8 24a16 16 0 0 0 32 0Z" fill="#FF5A5F"/><rect x="6" y="22" width="36" height="4" rx="2" fill="#1F2937"/><path d="M18 10c0 3-2 3-2 6M24 8c0 3-2 3-2 6M30 10c0 3-2 3-2 6" stroke="#2AC1BC" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg>
+      </span>
+      <span class="hvi" aria-label="배달">
+        <svg viewBox="0 0 48 48"><rect x="8" y="18" width="28" height="20" rx="3" fill="#049D95"/><path d="M8 24h28" stroke="#fff" stroke-width="2"/><path d="M22 18v20" stroke="#fff" stroke-width="2"/><path d="M36 24 42 28v8a2 2 0 0 1-2 2h-4Z" fill="#1F2937"/><circle cx="16" cy="40" r="3" fill="#1F2937"/><circle cx="34" cy="40" r="3" fill="#1F2937"/></svg>
+      </span>
+      <span class="hvi" aria-label="할인">
+        <svg viewBox="0 0 48 48"><path d="M40 22.8 25.2 37.6a3 3 0 0 1-4.24 0L7 23.6V7h16.6l16.4 16.4a3 3 0 0 1 0 4.24Z" fill="#FF5A5F"/><circle cx="14.5" cy="14.5" r="3.2" fill="#fff"/><path d="M16 28 28 16" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </span>
+    </div>
+    <div class="hero-recap">
+      <span>🍚 음식값 최대 30%</span>
+      <span>🛵 배달비 0원</span>
+      <span>🎬 전용코드 할인</span>
+    </div>
+    <a href="#download" class="btn-primary">지금 앱 다운받고 혜택 받기</a>
+    <p class="btn-sub-note">이미 앱이 있다면? <a href="#code" style="text-decoration:underline;">할인코드 바로 보기 →</a></p>
+   </div>
+  </section>
+
+  <!-- ===== 2. Creator-exclusive code ===== -->
+  <section class="section reveal" id="code">
+   <div class="section-inner">
+    <span class="section-tag">YOUTUBE 전용</span>
+    <h2>이 영상 보고 오신 분만<br>받을 수 있는 코드예요</h2>
+    <p class="desc">크리에이터 영상을 통해 오신 분께 구매금액 즉시 할인 코드를 드려요. 앱 주문 시 코드를 입력하면 바로 적용돼요.</p>
+
+    <div class="code-box">
+      <div class="label">🎬 크리에이터 전용 할인코드</div>
+      <div class="code-pill">
+        <span class="code" id="promoCode">WELCOME10</span>
+        <button class="copy-btn" id="copyBtn" onclick="copyCode()">복사하기</button>
+      </div>
+      <p class="hint">결제 시 쿠폰함 또는 코드 입력란에 붙여넣기만 하면 끝!<br>구매금액 10% 즉시 할인 (최대 5,000원)</p>
+    </div>
+   </div>
+  </section>
+
+  <!-- ===== 3. Benefits ===== -->
+  <section class="section alt reveal">
+   <div class="section-inner wide">
+    <span class="section-tag">복귀 혜택</span>
+    <h2>돌아온 당신에게<br>드리는 3가지 선물</h2>
+    <p class="desc">3개월 이상 주문이 없으셨던 분들께만 드리는 한정 혜택이에요.</p>
+
+    <div class="benefit-grid">
+      <div class="benefit-card">
+        <div class="icon"><svg viewBox="0 0 48 48"><path d="M40 22.8 25.2 37.6a3 3 0 0 1-4.24 0L7 23.6V7h16.6l16.4 16.4a3 3 0 0 1 0 4.24Z" fill="#049D95"/><circle cx="14.5" cy="14.5" r="3.2" fill="#fff"/><path d="M16 28 28 16" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+        <div>
+          <h3><span class="tagnum">최대 30%</span>음식값 할인</h3>
+          <p>복귀 첫 주문부터 적용돼요. 좋아하던 맛집, 이제 더 가볍게 시켜보세요.</p>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="icon"><svg viewBox="0 0 48 48"><rect x="8" y="18" width="28" height="20" rx="3" fill="#049D95"/><path d="M8 24h28" stroke="#fff" stroke-width="2"/><path d="M22 18v20" stroke="#fff" stroke-width="2"/><path d="M36 24 42 28v8a2 2 0 0 1-2 2h-4Z" fill="#1F2937"/><circle cx="16" cy="40" r="3" fill="#1F2937"/><circle cx="34" cy="40" r="3" fill="#1F2937"/></svg></div>
+        <div>
+          <h3>배달비 0원</h3>
+          <p>복귀 후 첫 주문은 배달비 전액 무료. 1인 가구에겐 가장 반가운 혜택이죠.</p>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="icon"><svg viewBox="0 0 48 48"><rect x="4" y="11" width="40" height="26" rx="4" fill="#049D95"/><rect x="4" y="17.5" width="40" height="5" fill="#fff" opacity="0.9"/><rect x="9" y="29" width="13" height="3.4" rx="1.7" fill="#fff"/><circle cx="36" cy="30.5" r="4" fill="#FFC400"/></svg></div>
+        <div>
+          <h3>배민클럽 멤버십 혜택</h3>
+          <p>가입만 해도 매달 무료배달 쿠폰 + 적립 혜택이 자동으로 쌓여요.</p>
+        </div>
+      </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- ===== 4. Membership perks ===== -->
+  <section class="section reveal">
+   <div class="section-inner wide">
+    <span class="section-tag">배민클럽이란?</span>
+    <h2>월 구독 하나로<br>혼자 사는 삶이 편해져요</h2>
+    <p class="desc">1인 가구에게 꼭 필요한 혜택만 모았어요.</p>
+
+    <div class="perk-list">
+      <div class="perk-item">
+        <div class="emoji"><svg viewBox="0 0 24 24"><path d="M3 16V6a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v3h2.5a1 1 0 0 1 .8.4l2.5 3.3a1 1 0 0 1 .2.6V16a1 1 0 0 1-1 1h-1" stroke="#049D95" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="7.5" cy="17.5" r="2" fill="#049D95"/><circle cx="16.5" cy="17.5" r="2" fill="#049D95"/><path d="M3 13h8" stroke="#049D95" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <div class="t">무제한 무료배달</div>
+        <div class="d">조건 없이 배달비 0원</div>
+      </div>
+      <div class="perk-item">
+        <div class="emoji"><svg viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v1.2a1.6 1.6 0 0 0 0 3.2V15a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1.6a1.6 1.6 0 0 0 0-3.2V9Z" fill="#049D95"/><path d="M14 7v10" stroke="#fff" stroke-width="1.4" stroke-dasharray="2.2 2.2" stroke-linecap="round"/></svg></div>
+        <div class="t">매달 쿠폰팩</div>
+        <div class="d">매달 새로운 할인쿠폰 지급</div>
+      </div>
+      <div class="perk-item">
+        <div class="emoji"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2A2 2 0 0 0 9.35 17H18a2 2 0 0 0 1.96-1.6L21.5 8H6" stroke="#049D95" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="10" cy="20" r="1.4" fill="#049D95"/><circle cx="17.5" cy="20" r="1.4" fill="#049D95"/></svg></div>
+        <div class="t">B마트 혜택</div>
+        <div class="d">장보기도 무료배달로</div>
+      </div>
+      <div class="perk-item">
+        <div class="emoji"><svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.6 6.1 20.6l1.3-6.6-4.9-4.6 6.6-.8L12 2.5Z" fill="#FFC400"/></svg></div>
+        <div class="t">적립 2배</div>
+        <div class="d">주문할수록 쌓이는 포인트</div>
+      </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- ===== 5. How it works ===== -->
+  <section class="section alt reveal">
+   <div class="section-inner">
+    <span class="section-tag">이용 방법</span>
+    <h2>3단계면 끝,<br>혜택 받기 정말 쉬워요</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div class="content">
+          <h3>앱 다운로드 & 로그인</h3>
+          <p>기존 계정 그대로 로그인하면 복귀 혜택이 자동으로 확인돼요.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div class="content">
+          <h3>전용 할인코드 입력</h3>
+          <p>결제 화면에서 코드를 입력하면 구매금액이 즉시 할인돼요.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div class="content">
+          <h3>배민클럽 가입 & 주문</h3>
+          <p>배달비 무료 혜택까지 한 번에 받고 든든한 한 끼를 즐기세요.</p>
+        </div>
+      </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- ===== 6. Social proof ===== -->
+  <section class="section reveal">
+   <div class="section-inner">
+    <span class="section-tag">함께하는 분들</span>
+    <h2>이미 많은 분들이<br>다시 돌아왔어요</h2>
+
+    <div class="stat-row">
+      <div class="stat"><b>127만+</b><span>복귀 고객 수</span></div>
+      <div class="stat"><b>4.8★</b><span>앱스토어 평점</span></div>
+      <div class="stat"><b>25분</b><span>평균 배달 시간</span></div>
+    </div>
+
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p>"혼자 사는데 배달비 무료라서 부담 없이 시켜먹어요. 할인코드까지 받으니 안 쓸 이유가 없네요."</p>
+      <div class="who">김OO · 자취 3년차</div>
+    </div>
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p>"다른 앱 쓰다가 다시 돌아왔는데, 혜택이 훨씬 좋아져서 깜짝 놀랐어요."</p>
+      <div class="who">박OO · 1인 가구</div>
+    </div>
+   </div>
+  </section>
+
+  <!-- ===== 7. Urgency ===== -->
+  <section class="section alt reveal">
+   <div class="section-inner">
+    <div class="urgency">
+      <div class="lead">⏰ 이 혜택은 기간 한정이에요</div>
+      <div class="countdown" id="countdown">
+        <div class="box"><b id="cd-d">07</b><span>일</span></div>
+        <div class="box"><b id="cd-h">00</b><span>시간</span></div>
+        <div class="box"><b id="cd-m">00</b><span>분</span></div>
+      </div>
+      <p class="note">혜택 종료 전에 앱을 다운로드하고 코드를 등록해두세요.</p>
+    </div>
+   </div>
+  </section>
+
+  <!-- ===== 8. FAQ ===== -->
+  <section class="section reveal">
+   <div class="section-inner">
+    <span class="section-tag">자주 묻는 질문</span>
+    <h2>혜택 받기 전<br>궁금한 점을 확인하세요</h2>
+
+    <div class="faq-list" id="faqList">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">할인코드는 언제, 어디에 입력하나요? <span class="arrow">⌄</span></div>
+        <div class="faq-a"><div class="faq-a-inner">앱에서 주문 후 결제 화면의 '할인코드 입력' 또는 '쿠폰함'에서 코드를 입력하면 즉시 할인이 적용돼요.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">기존에 쓰던 계정으로도 혜택을 받을 수 있나요? <span class="arrow">⌄</span></div>
+        <div class="faq-a"><div class="faq-a-inner">네, 가능해요. 최근 3개월 내 주문 내역이 없는 계정이라면 로그인 즉시 복귀 혜택이 자동으로 안내돼요.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">음식 할인과 배달비 무료, 할인코드를 동시에 쓸 수 있나요? <span class="arrow">⌄</span></div>
+        <div class="faq-a"><div class="faq-a-inner">네, 복귀 첫 주문에는 세 가지 혜택을 모두 중복 적용받을 수 있어요.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">배민클럽은 꼭 가입해야 하나요? <span class="arrow">⌄</span></div>
+        <div class="faq-a"><div class="faq-a-inner">가입하지 않아도 복귀 할인은 받을 수 있지만, 무제한 무료배달 등 추가 혜택을 받으시려면 배민클럽 가입을 추천해요.</div></div>
+      </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- ===== 9. Final CTA ===== -->
+  <section class="final-cta" id="download">
+   <div class="final-inner">
+    <h2>지금 앱을 받고<br>오늘 저녁부터 혜택 누리기</h2>
+    <p>전용 할인코드 <b style="color:var(--mint);">WELCOME10</b>을 잊지 마세요</p>
+
+    <div class="recap-row">
+      <div class="recap-item"><span class="recap-ic">🍚</span>최대 30% 음식값 할인</div>
+      <div class="recap-item"><span class="recap-ic">🛵</span>배달비 0원</div>
+      <div class="recap-item"><span class="recap-ic">🎬</span>코드 WELCOME10 할인</div>
+    </div>
+
+    <div class="store-buttons">
+      <a class="store-btn" href="https://apps.apple.com/kr/app/id674862066" target="_blank" rel="noopener">🍎 App Store에서 다운로드</a>
+      <a class="store-btn android" href="https://play.google.com/store/apps/details?id=com.sampleapp" target="_blank" rel="noopener">▶ Google Play에서 다운로드</a>
+    </div>
+    <p class="mini-code">이미 앱이 있다면, 앱을 열고 코드 <b>WELCOME10</b>을 입력하세요.</p>
+   </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="flinks">
+      <span>이용약관</span><span>개인정보처리방침</span><span>고객센터</span>
+    </div>
+    <p>본 프로모션은 최근 3개월 내 주문 내역이 없는 고객 대상이며, 조기 종료될 수 있습니다. 할인 혜택은 1인 1회에 한해 적용되며 타 쿠폰과 중복 적용 여부는 쿠폰 상세 조건에 따릅니다. (주)우아한형제들</p>
+  </footer>
+
+  <!-- ===== Sticky CTA bar (scroll 중 상시 노출) ===== -->
+  <div class="sticky-cta" id="stickyCta">
+    <div class="sticky-cta-text">🍚 음식값 할인 · 🛵 배달비 0원 · 코드 <strong>WELCOME10</strong></div>
+    <a href="#download" class="sticky-cta-btn">앱 받기</a>
+  </div>
+
+</div>
+
+<script>
+  // Copy promo code
+  function copyCode(){
+    const code = document.getElementById('promoCode').innerText;
+    const btn = document.getElementById('copyBtn');
+    navigator.clipboard.writeText(code).then(()=>{
+      btn.innerText = '복사됨!';
+      btn.classList.add('copied');
+      setTimeout(()=>{ btn.innerText='복사하기'; btn.classList.remove('copied'); }, 1800);
+    }).catch(()=>{ btn.innerText = code; });
+  }
+
+  // FAQ accordion
+  function toggleFaq(el){
+    const item = el.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  }
+
+  // Countdown timer (7 days from first load)
+  (function(){
+    const target = new Date();
+    target.setDate(target.getDate() + 7);
+    function tick(){
+      const now = new Date();
+      let diff = target - now;
+      if(diff < 0) diff = 0;
+      const d = Math.floor(diff / (1000*60*60*24));
+      const h = Math.floor((diff / (1000*60*60)) % 24);
+      const m = Math.floor((diff / (1000*60)) % 60);
+      document.getElementById('cd-d').innerText = String(d).padStart(2,'0');
+      document.getElementById('cd-h').innerText = String(h).padStart(2,'0');
+      document.getElementById('cd-m').innerText = String(m).padStart(2,'0');
+    }
+    tick();
+    setInterval(tick, 30000);
+  })();
+
+  // Sticky CTA: show after hero scrolls out of view, hide once final CTA is reached
+  (function(){
+    const bar = document.getElementById('stickyCta');
+    const hero = document.querySelector('.hero');
+    const finalCta = document.getElementById('download');
+    let heroPassed = false, finalVisible = false;
+    function update(){
+      bar.classList.toggle('show', heroPassed && !finalVisible);
+    }
+    new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        heroPassed = e.boundingClientRect.top < 0 && !e.isIntersecting;
+        update();
+      });
+    }, {threshold:0}).observe(hero);
+    new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ finalVisible = e.isIntersecting; update(); });
+    }, {threshold:0.15}).observe(finalCta);
+  })();
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
