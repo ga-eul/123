@@ -8,6 +8,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- Amplitude Analytics: API key only (client-safe, write-only for events) -->
+<script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
+<script>
+  window.amplitude && window.amplitude.init('c04ba5a851efdde5579892bba859ed45', {
+    defaultTracking: { pageViews: true, sessions: true, formInteractions: false, fileDownloads: false }
+  });
+</script>
 <style>
   :root{
     --mint: #2AC1BC;
@@ -615,6 +622,13 @@
 </div>
 
 <script>
+  // Amplitude event helper (no-ops safely if SDK failed to load)
+  function track(eventName, props){
+    if (window.amplitude && typeof window.amplitude.track === 'function') {
+      window.amplitude.track(eventName, props || {});
+    }
+  }
+
   // Copy promo code
   function copyCode(){
     const code = document.getElementById('promoCode').innerText;
@@ -624,6 +638,7 @@
       btn.classList.add('copied');
       setTimeout(()=>{ btn.innerText='복사하기'; btn.classList.remove('copied'); }, 1800);
     }).catch(()=>{ btn.innerText = code; });
+    track('Copy Discount Code', { code });
   }
 
   // FAQ accordion
@@ -652,6 +667,17 @@
     tick();
     setInterval(tick, 30000);
   })();
+
+  // CTA click tracking
+  document.querySelector('.header-cta')?.addEventListener('click', ()=> track('CTA Click', { location: 'header' }));
+  document.querySelector('.hero .btn-primary')?.addEventListener('click', ()=> track('CTA Click', { location: 'hero' }));
+  document.querySelector('.sticky-cta-btn')?.addEventListener('click', ()=> track('CTA Click', { location: 'sticky_bar' }));
+  document.querySelectorAll('.store-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> track('App Download Click', {
+      store: btn.classList.contains('android') ? 'google_play' : 'app_store',
+      location: 'final_cta'
+    }));
+  });
 
   // Sticky CTA: show after hero scrolls out of view, hide once final CTA is reached
   (function(){
