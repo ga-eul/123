@@ -681,7 +681,10 @@
         const id = entry.target.dataset.ctaId;
         if (seenImpressions.has(id)) return;
         if (entry.isIntersecting) {
+          if (pendingTimers.has(id)) return; // dwell timer already counting down, don't duplicate it
           const timer = setTimeout(()=>{
+            pendingTimers.delete(id);
+            if (seenImpressions.has(id)) return;
             seenImpressions.add(id);
             track('CTA Impression', { cta_id: id, cta_label: entry.target.dataset.ctaLabel });
             impressionObserver.unobserve(entry.target);
