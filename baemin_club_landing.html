@@ -373,7 +373,7 @@
   <!-- ===== Header ===== -->
   <header class="header">
     <div class="logo"><span class="dot"></span>배민클럽</div>
-    <a href="#download" class="header-cta">앱으로 받기</a>
+    <a href="#download" class="header-cta" data-cta-id="header_cta" data-cta-label="앱으로 받기">앱으로 받기</a>
   </header>
 
   <!-- ===== 1. Hero ===== -->
@@ -398,7 +398,7 @@
       <span>🛵 배달비 0원</span>
       <span>🎬 전용코드 할인</span>
     </div>
-    <a href="#download" class="btn-primary">지금 앱 다운받고 혜택 받기</a>
+    <a href="#download" class="btn-primary" data-cta-id="hero_primary_cta" data-cta-label="지금 앱 다운받고 혜택 받기">지금 앱 다운받고 혜택 받기</a>
     <p class="btn-sub-note">이미 앱이 있다면? <a href="#code" style="text-decoration:underline;">할인코드 바로 보기 →</a></p>
    </div>
   </section>
@@ -598,8 +598,8 @@
     </div>
 
     <div class="store-buttons">
-      <a class="store-btn" href="https://apps.apple.com/kr/app/id674862066" target="_blank" rel="noopener">🍎 App Store에서 다운로드</a>
-      <a class="store-btn android" href="https://play.google.com/store/apps/details?id=com.sampleapp" target="_blank" rel="noopener">▶ Google Play에서 다운로드</a>
+      <a class="store-btn" href="https://apps.apple.com/kr/app/id674862066" target="_blank" rel="noopener" data-cta-id="final_app_store" data-cta-label="App Store에서 다운로드">🍎 App Store에서 다운로드</a>
+      <a class="store-btn android" href="https://play.google.com/store/apps/details?id=com.sampleapp" target="_blank" rel="noopener" data-cta-id="final_google_play" data-cta-label="Google Play에서 다운로드">▶ Google Play에서 다운로드</a>
     </div>
     <p class="mini-code">이미 앱이 있다면, 앱을 열고 코드 <b>WELCOME10</b>을 입력하세요.</p>
    </div>
@@ -616,7 +616,7 @@
   <!-- ===== Sticky CTA bar (scroll 중 상시 노출) ===== -->
   <div class="sticky-cta" id="stickyCta">
     <div class="sticky-cta-text">🍚 음식값 할인 · 🛵 배달비 0원 · 코드 <strong>WELCOME10</strong></div>
-    <a href="#download" class="sticky-cta-btn">앱 받기</a>
+    <a href="#download" class="sticky-cta-btn" data-cta-id="sticky_cta" data-cta-label="앱 받기">앱 받기</a>
   </div>
 
 </div>
@@ -668,16 +668,39 @@
     setInterval(tick, 30000);
   })();
 
-  // CTA click tracking
-  document.querySelector('.header-cta')?.addEventListener('click', ()=> track('CTA Click', { location: 'header' }));
-  document.querySelector('.hero .btn-primary')?.addEventListener('click', ()=> track('CTA Click', { location: 'hero' }));
-  document.querySelector('.sticky-cta-btn')?.addEventListener('click', ()=> track('CTA Click', { location: 'sticky_bar' }));
-  document.querySelectorAll('.store-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=> track('App Download Click', {
-      store: btn.classList.contains('android') ? 'google_play' : 'app_store',
-      location: 'final_cta'
-    }));
-  });
+  // CTA impression + click tracking (keyed by data-cta-id so impressions and
+  // clicks can be joined per CTA to compute click-through rate)
+  (function(){
+    const ctas = document.querySelectorAll('[data-cta-id]');
+    const seenImpressions = new Set();
+    const pendingTimers = new Map();
+    const DWELL_MS = 500; // must stay 50%+ visible this long to count as a real impression
+
+    const impressionObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        const id = entry.target.dataset.ctaId;
+        if (seenImpressions.has(id)) return;
+        if (entry.isIntersecting) {
+          const timer = setTimeout(()=>{
+            seenImpressions.add(id);
+            track('CTA Impression', { cta_id: id, cta_label: entry.target.dataset.ctaLabel });
+            impressionObserver.unobserve(entry.target);
+          }, DWELL_MS);
+          pendingTimers.set(id, timer);
+        } else if (pendingTimers.has(id)) {
+          clearTimeout(pendingTimers.get(id));
+          pendingTimers.delete(id);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    ctas.forEach(el=>{
+      impressionObserver.observe(el);
+      el.addEventListener('click', ()=>{
+        track('CTA Click', { cta_id: el.dataset.ctaId, cta_label: el.dataset.ctaLabel });
+      });
+    });
+  })();
 
   // Sticky CTA: show after hero scrolls out of view, hide once final CTA is reached
   (function(){
